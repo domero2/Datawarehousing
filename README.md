@@ -8,3 +8,6 @@ Database we are using is Oracle.
 SLOWLY_CHANGING_DIMENSION.sql
 This file contains solution for slowly changing dimesnsion based on flag active(Y) and not active (N). It is usefule when we need sotred for exapmle all active counterparty i uor database and setting the date from what time to what time this counterparty was active. Or maybe he is still active from the beging.
 This slowly changing dimesnion help us to stored te historization of active/not active of counterparties and sometimes one counterparty could be active then not active then after some months/years acive again.
+
+Error_handling_functions.sql
+This file contains solution for handling errors based on informatica stuff. This is combination of user defined functions and variables. 
