@@ -11,3 +11,6 @@ This slowly changing dimesnion help us to stored te historization of active/not 
 
 Error_handling_functions.sql
 This file contains solution for handling errors based on informatica stuff. This is combination of user defined functions and variables. 
+
+Inf_procedure
+Procedure should contains out variable defined in the beging. In informatica procedure you need to have additional column. New column could be v_dummy for example where you will have output port and then process this result to filter where condition will be always false. Thanks this combination nothing will be loaded into target.
