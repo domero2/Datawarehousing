@@ -1,0 +1,172 @@
+ 
+ 
+ 
+ 
+ <xsd:complexType name="Fixing">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Represents the fixing element for particular
+			instrument.</xs:documentation>
+</xs:annotation>
+      <xsd:sequence>
+        <xsd:element name="type" type="fixingType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Fixing type. Currently the type being used is the
+					Spot.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="time" type="DateType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Date/Time of the fixing.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="value" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>the fixing value</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+	
+	
+	 infatype:length="500" infatype:type="xsd:string"
+--------------------------------------------------------------------------------------------------------------------------------	
+	Rozbity time, gdzie nadany był DataType
+	
+	    <xsd:complexType name="DateType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Complex type for datetime</xs:documentation>
+</xs:annotation>
+      <xsd:sequence>
+        <xsd:element name="value" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>integer encoded date/time </xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="type" type="dateTypeType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>type determines how the date is being
+					expressed.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="timezone" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+</xs:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+
+-------------------------------------------------------------------------------------------------------------------------
+
+  <xsd:simpleType name="dateTypeType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>The type determines how the date is being expressed. date and datetime
+				are absolute values. date is an integer of the form yyyyMMdd and datetime of the
+				form yyyyMMddHHmmss. </xs:documentation>
+</xs:annotation>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="date"/>
+        <xsd:enumeration value="datetime"/>
+        <xsd:enumeration value="day"/>
+        <xsd:enumeration value="month"/>
+        <xsd:enumeration value="year"/>
+        <xsd:enumeration value="endOfNextMonth"/>
+        <xsd:enumeration value="endOfQuarter"/>
+        <xsd:enumeration value="endOfYear"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+
+-------------------------------------------------------------------------------------------------------------------------
+	FIXING TYPE
+	    <xsd:simpleType name="fixingType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>type of the fixing</xs:documentation>
+</xs:annotation>
+      <xsd:restriction base="xsd:string">
+        <xsd:enumeration value="Spot"/>
+        <xsd:enumeration value="D"/>
+        <xsd:enumeration value="HVB_CLOSE"/>
+        <xsd:enumeration value="HVB_EDSP"/>
+        <xsd:enumeration value="HVB_NAV"/>
+        <xsd:enumeration value="HVB_OPEN"/>
+        <xsd:enumeration value="TBD"/>
+      </xsd:restriction>
+    </xsd:simpleType>
+-----------------------------------------------------------------------------------------------
+	
+	
+	
+	
+	Cały underlying
+	
+	    <xsd:complexType name="Underlying">
+      <xsd:sequence minOccurs="0" maxOccurs="1">
+        <xsd:choice>
+          <xsd:element ref="instrumentdata"/>
+          <xsd:element name="currency" type="Currency"/>
+        </xsd:choice>
+        <xsd:element name="index" minOccurs="0" maxOccurs="1" type="xsd:int">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Order preserving number</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="conversionratio" minOccurs="0" maxOccurs="1" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>underlying conversion ratio</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="guaranteedfx" minOccurs="0" maxOccurs="1" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>in case of exchange rate is required for the structured
+						product ,value represents the FX rate between the derivative product
+						currency and underlying currency.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="conversiontype" minOccurs="0" maxOccurs="1" type="conversionTypeType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Conversion type of the underlying(
+					Compo/Quanto)</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="basis" minOccurs="0" maxOccurs="1" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>Underlying basis which is specified Option specific way
+(Multiassets)</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="fixingsource" minOccurs="0" maxOccurs="1" type="FixingSource">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Defines where fixing values are taken from, either from GUI or HISTORIQUE table</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="fixing" minOccurs="0" maxOccurs="unbounded" type="Fixing">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Fixing Observations</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="Fixing">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Represents the fixing element for particular
+			instrument.</xs:documentation>
+</xs:annotation>
+      <xsd:sequence>
+        <xsd:element name="type" type="fixingType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Fixing type. Currently the type being used is the
+					Spot.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="time" type="DateType">
+<xs:annotation xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:documentation>Date/Time of the fixing.</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+        <xsd:element name="value" type="xsd:string">
+<xs:annotation infatype:length="500" infatype:type="xsd:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:infatype="http://www.informatica.com/types/">
+<xs:documentation>the fixing value</xs:documentation>
+</xs:annotation>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
